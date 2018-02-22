@@ -1,0 +1,63 @@
+-- This file has been generated from package.yaml by hpack version 0.20.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: b370c19757479b852ff02669ffccb68ad022fdd48b091c52ed551f907c2ab513
+
+name:           ImageAspect
+version:        0.1.0.0
+description:    Please see the README on Github at <https://github.com/githubuser/ImageAspect#readme>
+homepage:       https://github.com/varosi/ImageAspect#readme
+bug-reports:    https://github.com/varosi/ImageAspect/issues
+author:         Vassil Keremidchiev
+maintainer:     varosi@gmail.com
+copyright:      2018 Vassil Keremidchiev
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    ChangeLog.md
+    README.md
+
+library
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5,
+      JuicyPixels,
+      directory,
+      path,
+      path-io,
+      text
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_ImageAspect
+  default-language: Haskell2010
+
+executable ImageAspect-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      ImageAspect
+    , base >=4.7 && <5
+  other-modules:
+      Paths_ImageAspect
+  default-language: Haskell2010
+
+test-suite ImageAspect-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      ImageAspect
+    , base >=4.7 && <5
+  other-modules:
+      Paths_ImageAspect
+  default-language: Haskell2010
