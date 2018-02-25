@@ -22,6 +22,16 @@ allImages = do
     files' <- mapM parseRelFile files
     pure . filter (\p -> fileExtension p `elem` extensions) $ files'
 
+closestRatio :: Ratio Word -> Ratio Word
+closestRatio = closer where
+    ratios = [ a % b | a <- [1..30], b <- [1..30] ]
+    sm z   = filter (<= z) ratios
+    lg z   = filter (> z) ratios
+    closer a | (not . null . sm $ a) && (not . null . lg $ a) = if a - s <= l - a then s else l where
+        s = maximum . sm $ a
+        l = minimum . lg $ a
+    closer a = a
+
 readAspect :: Path Rel File -> IO (Ratio Word)
 readAspect file = do
     x <- readImageWithMetadata . toFilePath $ file
@@ -30,7 +40,7 @@ readAspect file = do
             Right (_, meta) -> pure meta
     let Just w = lookup Width m
         Just h = lookup Height m
-    pure $ w % h
+    pure $ closestRatio $ w % h
 
 newFileName :: Ratio Word -> Path Rel File -> IO (Path Rel File)
 newFileName r file = parseRelFile (name ++ suffix ++ fileExtension file) where
