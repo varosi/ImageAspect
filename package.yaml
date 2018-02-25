@@ -1,7 +1,7 @@
 name:                ImageAspect
 version:             0.1.0.0
 github:              "varosi/ImageAspect"
-license:             BSD3
+license:             GNU GPL
 author:              "Vassil Keremidchiev"
 maintainer:          "varosi@gmail.com"
 copyright:           "2018 Vassil Keremidchiev"
